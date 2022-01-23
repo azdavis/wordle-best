@@ -26,13 +26,25 @@ Clone the repo and download a dictionary of words (one word per line) to
 since the file size is large.) The program automatically filters for length-5
 words.
 
-On my machine it runs at about 1 iteration per second and there are 15918 words,
-so it'll take about 4.5 hours.
+Then just
+
+```sh
+$ cargo run --release
+```
+
+On my machine it runs at about 1 iter/sec and there are 15918 words, so it'll
+take about 4.5 hours.
 
 Scratch that, this is embarrassingly parallel, so I added rayon to speed it up.
 With some combination of `par_iter` and regular `iter`, I'm now able to get
-about 6 iterations per second on my machine. (I think I need to make the
-outermost iterator non-parallel to make `progress` work.)
+about 6.4 iter/sec on my machine.
+
+Notes:
+
+- I think I need to make the outermost iterator non-parallel to make `progress`
+  work.
+- Interestingly making both inner loops `par_iter` gave me about 5.8 iter/sec.
+  Maybe because the overhead from making stuff parallel wasn't actually worth.
 
 [1]: https://www.powerlanguage.co.uk/wordle/
 [2]:
