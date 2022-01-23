@@ -1,4 +1,5 @@
 use progressive::progress;
+use rayon::iter::{IntoParallelRefIterator as _, ParallelIterator as _};
 
 type Word = [u8; 5];
 type Tiles = [Tile; 5];
@@ -45,7 +46,7 @@ fn main() {
   let words = get_words();
   let iter = words.iter().map(|guess| {
     let total: usize = words
-      .iter()
+      .par_iter()
       .map(|answer| {
         let tiles = get_tiles(guess, answer);
         words

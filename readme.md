@@ -29,6 +29,11 @@ words.
 On my machine it runs at about 1 iteration per second and there are 15918 words,
 so it'll take about 4.5 hours.
 
+Scratch that, this is embarrassingly parallel, so I added rayon to speed it up.
+With some combination of `par_iter` and regular `iter`, I'm now able to get
+about 6 iterations per second on my machine. (I think I need to make the
+outermost iterator non-parallel to make `progress` work.)
+
 [1]: https://www.powerlanguage.co.uk/wordle/
 [2]:
   https://github.com/dwyl/english-words/blob/22d7c41119076750a96fca2acd664ed994cc0a75/words_alpha.txt
