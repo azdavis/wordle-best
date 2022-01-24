@@ -4,7 +4,7 @@ An attempt to find the best starting [Wordle][1] guess.
 
 ## The answer
 
-TODO (it's running right now LMAO)
+Apparently it's "aries".
 
 ## Methodology
 
